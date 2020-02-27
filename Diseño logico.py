@@ -67,7 +67,74 @@ def valid(ent, Largo): #valida que sea de 4 digitos, que este dentro del rango y
             print("El número no es valido")
             menu()
 
-
+def hexa(bina):
+    largo=len(bina)
+   
+    if largo%4==0:#Aqui reviso si la longitud del binario es divisible entre 4, si no lo es, lo corrige y le pone 0s
+        lista1=[]
+        cont=0
+        contf=0
+        
+        while cont<largo:
+            aux=""
+            while (contf<4):#Aqui voy dividiendo el binario en grupos de 4, ese aux se reinicia cada vez que llega a 3
+                aux=aux+(bina[cont])
+                contf+=1
+                cont+=1
+            
+            lista1.append(aux)#Añade cada grupo de 4 en una posicion de la lista
+            contf=0
+        
+        aux1=[]#Comparo los strings en lista1, y aqui se convierten a hexadecimal, entonces lista1 los tiene en binarios y aux1 en hexadecimal
+        for n in range(0,len(lista1)):
+            if lista1[n]=="0000":
+                aux1.append("0")
+            elif lista1[n]=="0001":
+                aux1.append("1")
+            elif lista1[n]=="0010":
+                aux1.append("2")
+            elif lista1[n]=="0011":
+                aux1.append("3")
+            elif lista1[n]=="0100":
+                aux1.append("4")
+            elif lista1[n]=="0101":
+                aux1.append("5")
+            elif lista1[n]=="0110":
+                aux1.append("6")
+            elif lista1[n]=="0111":
+                aux1.append("7")
+            elif lista1[n]=="1000":
+                aux1.append("8")
+            elif lista1[n]=="1001":
+                aux1.append("9")
+            elif lista1[n]=="1010":
+                aux1.append("A")
+            elif lista1[n]=="1011":
+                aux1.append("B")
+            elif lista1[n]=="1100":
+                aux1.append("C")
+            elif lista1[n]=="1101":
+                aux1.append("D")
+            elif lista1[n]=="1110":
+                aux1.append("E")
+            elif lista1[n]=="1111":
+                aux1.append("F")
+            else:
+                print("Numero invalido")
+        Hexa=""##Aqui meto en un string ya el numero en hexadecimal. 
+        for ele in range(0,len(aux1)):
+            Hexa=Hexa+(aux1[ele])
+        print(Hexa)
+    else: #Correcion en caso de que el numero binario no tenga todos los ceros, basicamente va añadiendo ceros a la operacion
+        nuevo="0"
+        nuevo=nuevo+bina
+        print(nuevo)
+        largo=len(nuevo)
+        hexa(nuevo)
+    
+    
+    return True
+    
 #programa principal 
 
 
@@ -83,10 +150,10 @@ def menu():
 
         NumBin= int(ToBin(Octal, Largo)) #funcion ineficiente para pasar a binario y lo guarda en la una variable tipo int 
 
-        NumHexa= ToHex(NumBin)
+       
         
         print(NumBin)
-        print(NumHexa)
+        hexa(str(NumBin))
         submenu()
         
     except ValueError:
