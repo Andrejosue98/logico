@@ -26,9 +26,97 @@ def ToBin(num, let): #pasa el numero octal a binario
         i=i-1
     return x
         
-def ToHex(bi):    #pasa el numero binario a Hexa
+def ToHex(Numbin):   #pasa el numero binario a Hexa
+    largo=len(Numbin)
+   
+    if largo%4==0:
+        lista1=[]
+        cont=0
+        contf=0
+        
+        while cont<largo:
+            aux=""
+            while (contf<4):
+                aux=aux+(Numbin[cont])
+                contf+=1
+                cont+=1
+            
+            lista1.append(aux)
+            contf=0
+        global aux1
+        aux1=[]
+        for n in range(0,len(lista1)):
+            if lista1[n]=="0000":
+                aux1.append("0")
+            elif lista1[n]=="0001":
+                aux1.append("1")
+            elif lista1[n]=="0010":
+                aux1.append("2")
+            elif lista1[n]=="0011":
+                aux1.append("3")
+            elif lista1[n]=="0100":
+                aux1.append("4")
+            elif lista1[n]=="0101":
+                aux1.append("5")
+            elif lista1[n]=="0110":
+                aux1.append("6")
+            elif lista1[n]=="0111":
+                aux1.append("7")
+            elif lista1[n]=="1000":
+                aux1.append("8")
+            elif lista1[n]=="1001":
+                aux1.append("9")
+            elif lista1[n]=="1010":
+                aux1.append("A")
+            elif lista1[n]=="1011":
+                aux1.append("B")
+            elif lista1[n]=="1100":
+                aux1.append("C")
+            elif lista1[n]=="1101":
+                aux1.append("D")
+            elif lista1[n]=="1110":
+                aux1.append("E")
+            elif lista1[n]=="1111":
+                aux1.append("F")
+            else:
+                print("Numero invalido")
+       
+        
+    else: #Correcion en caso de que el numero binario no tenga todos los ceros
+        nuevo="0"
+        nuevo=nuevo+bina
+        
+        largo=len(nuevo)
+        ToHex(nuevo)
+    Hexa=""
+    for ele in range(0,len(aux1)):
+        Hexa=Hexa+(aux1[ele])
+    
+    return Hexa
     
     
+    
+    
+def ToNrz(NumBin): # pasa el numero binario a codigo NRZ
+    lista=["0"]
+    Datos_Nrz=""
+    contl=1
+    cont=0
+    while cont<len(NumBin):
+        
+        if NumBin[cont]=='0':
+            lista.append(lista[contl-1])
+        else:
+            if lista[contl-1]=="0":
+                lista.append("1")
+            else:
+                lista.append("0")
+        cont+=1
+        contl+=1
+        
+    for ele in range(1,len(lista)):
+        Datos_Nrz=Datos_Nrz+lista[ele]
+    return Datos_Nrz
     
 
 def submenu(): #submenu final que permite terminar el programa o continuar 
