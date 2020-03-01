@@ -172,9 +172,10 @@ def menu():
         NumBin= int(ToBin(Octal, Largo)) #funcion ineficiente para pasar a binario y lo guarda en la una variable tipo int 
 
         NumHexa= ToHex(NumBin)
-        
-        print(NumBin)
-        print(NumHexa)
+        NumNrz) ToNrz(NumBin)
+        print("Numero en binario: ",NumBin)
+        print("Numero en hexadecimal: ",NumHexa)
+        print("Numero en codigo NRZ(iniciando en 0): ",NumNrz)
         submenu()
         
     except ValueError:
